@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>04-排版常用样式1</title>
+		<link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+	</head>
+	<body>
+		<!-- 常用样式
+					1.标题
+						Bootstrap覆盖了其默认的样式
+						提供了对应类名，为非标题元素设置样式，.h1~.h6
+						副标题 small标签或者 .small类名
+						定义了.h1~.h6六个类名。同时后面可以紧跟着一行小的副标题或使用.small
+					2.段落
+						通过.lead来突出强调内容(其作用就是增大文本字号,加粗文本,而且对行高和margin也做相应的处理。
+						<small>:小号字
+						<b><strong>:加粗
+						<i><em>:斜体
+					3.强调
+						.text-muted:提示,使用浅灰色(#999)
+						.text-primαry:主要,使用蓝色(#428bcα)
+						.text-success:成功,使用浅绿色(#3c763d)
+						.text-info:通知信息,使用浅蓝色(#31708f) 
+						.text-warning:警告,使用黄色(#8α6d3b) 
+						.text-danger:危险,使用褐色(#α94442)
+					4.对齐效果
+					在CSS中常常使用text-align来实现文本的对齐风格的设置
+						左对齐,取值left;
+						居中对齐,取值center;
+						右对齐,取值right; 
+						两端对齐,取值justify.
+					Bootstrap通过定义四个类名来控制文本的对齐风格:
+						.text-left:左对齐
+						.text-center:  居中对齐
+						.text-right:右对齐
+						.text-justify:两端对齐。
+				-->
+				
+		<!-- 标题 -->
+		<h1>标题1<small>副标题1</small></h1>
+		<h2>标题2<span class="small">副标题2</span></h2>
+		<h3>标题3</h3>
+		<div class="h1">你好</div>
+		
+		<hr />
+		<!-- 段落 -->
+		<p>通过.lead来突出强调内容(其作用就是增大文本字号,加粗文本,而且对行高和margin也做相应的处理。</p>
+		<p class="lead">通过.lead来突出<small>强调</small><b>内容</b>(其作用就是<strong>增大</strong>文本<i>字号</i>,加粗<em>文本</em>,而且对行高和margin也做相应的处理。</p>
+		
+		<hr />
+		<!-- 强调 -->
+		<div	class="text-muted">.text-muted:提示效果,使用浅灰色(#999)</div>
+		<div class="text-primary">.text-primαry:主要效果,使用蓝色(#428bcα)</div>
+		<div  class="text-success">.text-success:成功效果,使用浅绿色(#3c763d)</div>
+		<div  class="text-info">.text-info:通知信息效果,使用浅蓝色(#31708f) </div>
+		<div  class="text-warning">.text-warning:警告效果,使用黄色(#8α6d3b) </div>
+		<div class="text-danger">.text-danger:危险效果,使用褐色(#α94442)</div>
+		
+		<hr />
+		<!-- 对齐效果 -->
+		<p style="text-align: left;">左对齐</p>
+		<p style="text-align: center;">居中对齐</p>
+		<p style="text-align: right;">右对齐</p>
+		
+		<p class="text-left">左对齐</p>
+		<p class="text-center">居中对齐</p>
+		<p class="text-right">右对齐</p>
+		<p class="text-justify">hello 网格系统的实现原理非常简单,仅仅是通过定义容器大小,平分12份(也有平分成24份或32份,但12份是最常见的),再调整内外边距,最后结合媒体查询,就制作出了强大的响应式网格系统。Bootstrap框架中的网格系统就是将容器平分成12份
+		hi 网格系统的实现原理非常简单,仅仅是通过定义容器大小,平分12份(也有平分成24份或32份,但12份是最常见的),再调整内外边距,最后结合媒体查询,就制作出了强大的响应式网格系统。Bootstrap框架中的网格系统就是将容器平分成12份
+		网格系统的实现原理非常简单,仅仅是通过定义容器大小,平分12份(也有平分成24份或32份,但12份是最常见的),再调整内外边距,最后结合媒体查询,就制作出了强大的响应式网格系统。Bootstrap框架中的网格系统就是将容器平分成12份</p>
+	</body>
+	<script src="js/jQuery.js"></script>
+	<script src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+</html>
+
+		

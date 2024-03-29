@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>06-表单控件常用样式</title>
+		<link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+	</head>
+	<body>
+		<!-- 
+			表单 
+				1.文本框
+					.form-control 设置表单元素的样式
+					表单控件的大小 .input-lg .input-sm
+				2.下拉框
+					.form-control 设置表单元素的样式
+					multiple="multiple" 设置下拉框可多选
+				3.文本域
+					.form-control 设置表单元素的样式
+				4.复选框
+					垂直显示 .checkbox
+					水平显示 .checkbox-inline
+				5.单选框
+					垂直显示 .radio
+					水平显示 .radio-inline
+				6.按钮
+					1)使用button实现
+					基础样式:  .btn
+					<button	class="btn">按钮</button>
+					附加样式:btn-primary btn-info btn-success btn-warning btn-danger btn-link btn-default
+					<button class="btn	btn-danger">按钮</button>
+					<button	class="btn	btn-primary">按钮</button>
+					<button	class="btn	btn-info">按钮</button>
+					<button	class="btn	btn-success">按钮</button>
+					<button	class="btn	btn-default">按钮</button>
+					<button	class="btn	btn-warning">按钮</button>
+					<button	class="btn	btn-link">按钮</button>
+					
+					2)多标签支持:使用a div等制作按钮
+					<a href="##"class="btn	btn-info">a标签按钮</a>
+					<span class="btn btn-success">span标签按钮</span>
+					<div class="btn btn-warning">div标签按钮</div>
+					3)按钮大小
+					使用.btn-lg、.btn-sm或.btn-xs就可以获得不同尺寸的按钮
+					<button	class="btn btn-primary	btn-xs">超小按钮.btn-xs</button>
+					<button	class="btn btn-primary  btn-sm">小型按钮.btn-sm</button>
+					<button	class="btn  btn-primary">正常按钮</button>
+					<button	class="btn	btn-primary	btn-lg">大型按钮.btn-lg</button>
+					4)按钮禁用
+					方法1:在标签中添加disabled属性
+					<button	class="btn btn-danger"disabled="disabled">禁用按钮</button>
+					方法2:在元素标签中添加类名"disαbled"
+					<button	class="btn	btn-danger  disabled">禁用按钮</button>
+					在class属性中添加disabled只是样式上禁用了,并不是真正的禁用了此按钮!
+		-->
+		<input type="text" /><br />
+		<select name="" id="">
+			<option value="">请选择城市</option>
+			<option value="">上海</option>
+			<option value="">北京</option>
+		</select><br />
+		<textarea name="" id="" cols="30" rows="10"></textarea><br />
+		<input type="checkbox" name="hobby" id="" />唱歌
+		<input type="checkbox" name="hobby" id="" />跳舞
+		<input type="radio" name="sex" id="" />男
+		<input type="radio" name="sex" id="" />女 <br />
+		<button>按钮</button><input type="button" value="按钮" />
+		
+		<hr /><br />
+		<!-- 文本框 -->
+		<input type="text" class="form-control"/>
+		
+		<hr /><br />
+		<div class="row">
+			<div class="col-md-3">
+				<!-- 文本框 -->
+				<input type="text" class="form-control"/><br />
+				<input type="text" class="form-control input-lg"/><br />
+				<input type="text" class="form-control input-sm"/><br />
+			</div>
+		</div>
+		
+		<hr /><br />
+		<!-- 下拉框 -->
+		<div class="row">
+			<div class="col-md-3">
+				<select class="form-control">
+					<option value="">请选择城市</option>
+					<option value="">上海</option>
+					<option value="">北京</option>
+				</select><br />
+				<!-- 下拉框可多选 -->
+				<select class="form-control" multiple="multiple">
+					<option value="">请选择城市</option>
+					<option value="">上海</option>
+					<option value="">北京</option>
+				</select><br />
+			</div>
+		</div>
+		
+		<hr /><br />
+		<!-- 文本域 -->
+		<div class="row">
+			<div class="col-md-3">
+				<textarea class="form-control"></textarea>
+			</div>
+		</div>
+		
+		<!-- 复选框 -->
+		<!-- 垂直显示 -->
+		<hr /><br />
+		<div class="row">
+			<div class="col-md-3">
+				<div class="checkbox">
+					<label ><input type="checkbox" name="hobby" />唱歌</label>
+				</div>
+				<div class="checkbox">
+					<label ><input type="checkbox" name="hobby" />跳舞</label>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 复选框 -->
+		<!-- 水平显示 -->
+		<hr /><br />
+		<div class="row">
+			<div class="col-md-3">
+				<label class="checkbox-inline"><input type="checkbox" name="hobby" />唱歌</label>
+				<label class="checkbox-inline"><input type="checkbox" name="hobby" />跳舞</label>
+			</div>
+		</div>
+		
+		<!-- 单选框 -->
+		<!-- 垂直显示 -->
+		<hr /><br />
+		<div class="row">
+			<div class="col-md-3">
+				<div class="radio">
+					<label ><input type="radio" name="sex" />男</label>
+				</div>
+				<div class="radio">
+					<label ><input type="radio" name="sex" />女</label>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 单选框 -->
+		<!-- 水平显示 -->
+		<hr /><br />
+		<div class="row">
+			<div class="col-md-3">
+				<label class="radio-inline"><input type="radio" name="sex" />男</label>
+				<label class="radio-inline"><input type="radio" name="sex" />女</label>
+			</div>
+		</div>
+		
+		<hr /><br />
+		<!-- 按钮 -->
+		<button class="btn	btn-danger">按钮</button>
+		<button	class="btn	btn-primary">按钮</button>
+		<button	class="btn	btn-info">按钮</button>
+		<button	class="btn	btn-success">按钮</button>
+		<button	class="btn	btn-default">按钮</button>
+		<button	class="btn	btn-warning">按钮</button>
+		<button	class="btn	btn-link">按钮</button><br />
+		
+		<hr /><br />
+		<!-- 把普通元素变成按钮 -->
+		<a href="##"class="btn	btn-info">a标签按钮</a>
+		<span class="btn btn-success">span标签按钮</span>
+		<div class="btn btn-warning">div标签按钮</div>
+		
+		<hr /><br />
+		<!-- 设置按钮大小 -->
+		<button	class="btn btn-primary	btn-xs">超小按钮.btn-xs</button>
+		<button	class="btn btn-primary  btn-sm">小型按钮.btn-sm</button>
+		<button	class="btn  btn-primary">正常按钮</button>
+		<button	class="btn	btn-primary	btn-lg">大型按钮.btn-lg</button>
+		
+		<hr /><br />
+		<!-- 按钮禁用 -->
+		<!-- 方法1:在标签中添加disabled属性 -->
+		<button	class="btn	btn-danger" onclick="alert('hello')">按钮</button><br />
+		<button	class="btn btn-danger" onclick="alert('hello')" disabled="disabled">禁用按钮</button><br />
+		<!-- 方法2:在元素标签中添加类名"disαbled" -->
+		<button	class="btn	btn-success" onclick="alert('hello')">按钮</button><br />
+		<button	class="btn	btn-success disabled" onclick="alert('hello')">禁用按钮</button><br />
+	</body>
+	<script src="js/jQuery.js"></script>
+	<script src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+</html>
+		
+	
+		
