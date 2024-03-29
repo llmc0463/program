@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lmc2</title>
+    <link
+      rel="stylesheet"
+      href="./bootstrap-3.4.1-dist/css/bootstrap.min.css"
+    />
+    <script src="js/jQuery.js"></script>
+    <script src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+      .panel {
+        margin: 0;
+        padding: 0;
+      }
+      .chuangkou1 {
+        background: url(./img/home-banner@2x.jpg);
+        background-size: cover;
+        height: 60vh;
+      }
+      .panel-body {
+        background-size: cover;
+      }
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #rightnow {
+        width: 180px;
+        height: 48px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .thumbnail {
+        border-color: white;
+        text-align: left;
+      }
+      @media (max-width: 768px) {
+        .picture {
+          width: 100%;
+        }
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        /* left: 0;
+        top: 0; */
+        inset: 0; /* 在视口中居中，相当于 top, right, bottom, left 都为 0 */
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+		    
+      }
+
+      .modal-content {
+        display: flex; /* 使用Flexbox布局 */
+        justify-content: center; /* 水平居中 */
+        align-items: center; /* 垂直居中 */
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        height: 80%;
+		    max-width: 350px;
+        max-height: 250px;
+        position: relative;
+      }
+      
+      .form{
+        width: 100%;
+      }
+
+      .close {
+        color: #aaa;
+        /* float: right ; */
+        font-size: 28px;
+        font-weight: bold;
+		    position: absolute;
+		    top: 10px; 
+  		  right: 10px;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .style1{
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 30px;
+            justify-content: center; /* 水平居中 */
+      }
+      .style2{
+            font-size: 18px;
+            font-weight: normal;
+            color: #666;
+      }
+      .style3{
+            font-size: 18px;
+            font-weight: normal;
+            color: #666;
+            border-color: #DDDFE6;
+            border-radius: 5px;
+            padding-top: 5px;
+      }
+      .style4{
+            font-size: 18px;
+            font-weight: normal;
+            color:white;
+            background-color: #589EF8;
+            border-color: transparent;
+            border-radius: 5px;
+            padding-top: 5px;
+      }
+      .style5{
+            margin-bottom: 10px;
+            border-color: #DDDFE6;
+            border-radius: 5px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="panel">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="chuangkou1">
+            <form
+              action="#"
+              class="form-horizontal"
+              role="form"
+              style="padding: 20px"
+            >
+              <div class="form-group">
+                <span class="col-md-3 col-md-offset-1">
+                  <img
+                    src="./img/logo-white.svg"
+                    alt="xiaotubiao"
+                    style="width: 40%"
+                  />
+                </span>
+                <span class="col-md-2 col-md-offset-6" style="float: right">
+                  <button
+                    class="btn btn-default"
+                    id="loginBtn"
+                    style="
+                      background-color: #335adf;
+                      border: 1px solid white;
+                      color: white;
+                    "
+                  >
+                    登录
+                  </button>
+                  <button
+                    class="btn btn-default"
+                    id="registerBtn"
+                    style="
+                      background-color: #335adf;
+                      border: 1px solid white;
+                      color: white;
+                    "
+                  >
+                    注册
+                  </button>
+                </span>
+              </div>
+            </form>
+            <div class="text-center" style="padding: 20px">
+              <h1 style="color: white; font-size: 3.6rem; margin-bottom: 20px">
+                云端编程，浏览器里边学边练
+              </h1>
+              <h4 style="color: white">
+                软件定义一切，网络连接时空，学习软件技术，创造未来世界。
+              </h4>
+              <br />
+              <button
+                type="button"
+                id="rightnow"
+                class="btn btn-default"
+                style="color: #0c6efd; font-size: 20px"
+              >
+                马上学习
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="panel-body" style="background-color: #f0f0f0">
+          <div class="center">
+            <img class="picture" src="img/img-lab@2x.png" alt="tupian1" />
+          </div>
+          <div
+            align="left"
+            class="h2 col-md-offset-1 col-xs-offset-1"
+            style="font-weight: bolder; font-size: 30px; margin-bottom: 2rem"
+          >
+            高级Web编程实验室
+          </div>
+          <div
+            align="left"
+            class="h4 col-md-offset-1 col-xs-offset-1"
+            style="color: black; padding-right: 0.625rem; margin-bottom: 1.5rem"
+          >
+            每人拥有自己完全独立的编程实验室，内置所有基础软件及学习素材。打开浏览器，即刻开始编程！
+          </div>
+          <div align="left" style="padding: 0">
+            <button
+              type="button"
+              class="btn text-center col-md-offset-1 col-md-1 col-xs-offset-1 col-xs-10"
+              style="
+                border: 1px solid black;
+                color: #6c757d;
+                margin-bottom: 4rem;
+              "
+            >
+              了解详情
+            </button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div class="center">
+            <img class="picture" src="img/img-screens@2x.png" alt="tupian2" />
+          </div>
+          <div
+            align="left"
+            class="h2 col-md-offset-1 col-xs-offset-1"
+            style="
+              font-weight: bolder;
+              font-size: 30px;
+              margin-top: 2rem;
+              margin-bottom: 2rem;
+            "
+          >
+            双屏学习
+          </div>
+          <div
+            align="left"
+            class="h4 col-md-offset-1 col-xs-offset-1"
+            style="color: black; padding-right: 0.625rem; margin-bottom: 1.5rem"
+          >
+            双屏学习，小屏视频互动，大屏实际操作，学习无障碍。打开浏览器，即刻开始编程！
+          </div>
+          <div align="left" style="padding: 0">
+            <button
+              type="button"
+              class="btn text-center col-md-offset-1 col-md-1 col-xs-offset-1 col-xs-10"
+              style="
+                border: 1px solid black;
+                color: #6c757d;
+                background-color: white;
+                margin-bottom: 4rem;
+              "
+            >
+              了解详情
+            </button>
+          </div>
+          <br />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div
+            align="left"
+            class="h3 col-md-offset-1 col-xs-offset-1"
+            style="font-weight: bolder; font-size: 2.5rem"
+          >
+            课程特色
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="container" style="margin: 0">
+        <div class="row">
+          <!-- 缩略图 1-->
+          <div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1">
+            <div class="thumbnail">
+              <div class="item1 col-xs-1 col-xs-offset-1">
+                <svg
+                  align="left"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="55"
+                  height="55"
+                  fill="currentColor"
+                  class="bi bi-collection"
+                  viewBox="0 0 16 16"
+                  style="
+                    color: white;
+                    background-color: #3280fd;
+                    border-radius: 10px;
+                    padding: 12;
+                  "
+                >
+                  <path
+                    d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"
+                  />
+                </svg>
+              </div>
+              <div class="item2 col-xs-10">
+                <div
+                  align="left"
+                  class="h3"
+                  style="font-weight: bolder; font-size: 2.5rem"
+                >
+                  丰富的教学服务
+                </div>
+                <div
+                  align="left"
+                  class="h4"
+                  style="color: black; font-size: 1.5rem"
+                >
+                  特色教学服务功能，各种配套教学服务，在线学习从未如此轻松。
+                </div>
+                <div align="left" class="btn" style="padding-left: 0">
+                  <button
+                    class="btn btn-link"
+                    style="
+                      text-decoration: underline;
+                      color: #3280fd;
+                      padding: 0;
+                    "
+                  >
+                    马上学习 <i class="glyphicon glyphicon-chevron-right"></i>
+                  </button>
+                </div>
+                <br />
+              </div>
+            </div>
+          </div>
+          <!-- 缩略图 2-->
+          <div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1">
+            <div class="thumbnail">
+              <div class="item1 col-xs-1 col-xs-offset-1">
+                <svg
+                  align="left"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="55"
+                  height="55"
+                  fill="currentColor"
+                  class="bi bi-person-circle"
+                  viewBox="0 0 16 16"
+                  style="
+                    color: white;
+                    background-color: #3280fd;
+                    border-radius: 10px;
+                    padding: 12;
+                  "
+                >
+                  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                  <path
+                    fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+                  />
+                </svg>
+              </div>
+              <div class="item2 col-xs-10">
+                <div
+                  align="left"
+                  class="h3"
+                  style="font-weight: bolder; font-size: 2.5rem"
+                >
+                  多元的学习方式
+                </div>
+                <div
+                  align="left"
+                  class="h4"
+                  style="color: black; font-size: 1.5rem"
+                >
+                  知识提炼、答疑解惑、实时互动、开发有特色的教学服务方式。
+                </div>
+                <div align="left" class="btn" style="padding-left: 0">
+                  <button
+                    class="btn btn-link"
+                    style="
+                      text-decoration: underline;
+                      color: #3280fd;
+                      padding: 0;
+                    "
+                  >
+                    马上学习 <i class="glyphicon glyphicon-chevron-right"></i>
+                  </button>
+                </div>
+                <br />
+              </div>
+            </div>
+          </div>
+          <!-- 缩略图 3-->
+          <div class="col-xs-12 col-sm-4 col-md-3 col-md-offset-1">
+            <div class="thumbnail">
+              <div class="item1 col-xs-1 col-xs-offset-1">
+                <svg
+                  align="left"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="55"
+                  height="55"
+                  fill="currentColor"
+                  class="bi bi-toggles2"
+                  viewBox="0 0 16 16"
+                  style="
+                    color: white;
+                    background-color: #3280fd;
+                    border-radius: 10px;
+                    padding: 12;
+                  "
+                >
+                  <path
+                    d="M9.465 10H12a2 2 0 1 1 0 4H9.465c.34-.588.535-1.271.535-2 0-.729-.195-1.412-.535-2z"
+                  />
+                  <path
+                    d="M6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm.535-10a3.975 3.975 0 0 1-.409-1H4a1 1 0 0 1 0-2h2.126c.091-.355.23-.69.41-1H4a2 2 0 1 0 0 4h2.535z"
+                  />
+                  <path d="M14 4a4 4 0 1 1-8 0 4 4 0 0 1 8 0z" />
+                </svg>
+              </div>
+              <div class="item2 col-xs-10">
+                <div
+                  align="left"
+                  class="h3"
+                  style="font-weight: bolder; font-size: 2.5rem"
+                >
+                  高品质的学习体验
+                </div>
+                <div
+                  align="left"
+                  class="h4"
+                  style="color: black; font-size: 1.5rem"
+                >
+                  多屏合一，随时学习，随时在线，学习记录一目了然，知识充电不再受限。
+                </div>
+                <div align="left" class="btn" style="padding-left: 0">
+                  <button
+                    class="btn btn-link"
+                    style="
+                      text-decoration: underline;
+                      color: #3280fd;
+                      padding: 0;
+                    "
+                  >
+                    马上学习 <i class="glyphicon glyphicon-chevron-right"></i>
+                  </button>
+                </div>
+                <br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-body" style="background-color: #f0f0f0">
+      <div align="center" class="h5" style="color: black; font-weight: bold">
+        ©2024 云端科技 Artech All rights reserved
+      </div>
+    </div>
+
+    
+				<!-- <button id="loginBtn">登录</button>
+				<button id="registerBtn">注册</button> -->
+
+				<div id="loginModal" class="modal">
+					<div class="modal-content">
+						<div class="style1 ">登录</div>
+						<span class="close">&times;</span>
+						<form class="form" style="padding-top: 20px;">
+							<label for="username"><span style="color:red;">*</span><span class="style2" >用户名</span></label>
+							<input class="style5" type="text" id="username" name="username" autocomplete="off" v-model="username" />
+							<br />
+							<label for="password" style="padding-right: 18px;padding-bottom: 16px;"><span style="color:red;">*</span><span class="style2" >密码</span></label>
+							<input class="style5" type="password" id="password" name="password" v-model="password" />
+							<br />
+							<div class="row" style="padding-left: 18px;margin: 0;">
+								<input class="style4 col-md-3 " id="login" type="button" value="登录" @click="login" />
+								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 16px;margin-right: 16px;" type="reset" value="重置">
+								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 0;" id="register" type="button" value="注册">
+              </div>
+						</form>
+					</div>
+				</div>
+			
+				<div id="registerModal" class="modal">
+					<div class="modal-content">
+						<div class="style1 ">注册</div>
+						<span class="close">&times;</span>
+						<form class="form" style="padding-top: 40px;">
+							<label for="regUsername" style="padding-right: 18px;"><span style="color:red;">*</span><span class="style2" >用户名</span></label>
+							<input class="style5" type="text" id="regUsername" name="regUsername" v-model="regUsername" />
+							<br />
+							<label for="regPassword" style="padding-right: 36px;"><span style="color:red;">*</span><span class="style2" >密码</span></label>
+							<input class="style5" type="password" id="regPassword" name="regPassword" v-model="regPassword" />
+							<br />
+							<label for="lastRegPassword" style="padding-bottom: 10px;" ><span style="color:red;">*</span><span class="style2" >确认密码</span></label>
+							<input class="style5" type="password" name="lastRegPassword" id="lastRegPassword" v-model="lastRegPassword">
+							<br/>
+							<div class="row" style="padding-left: 18px;margin: 0;">
+                <input class="style4 col-md-3 " id="register1" type="button" value="提交" @click="register" />
+								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 16px;margin-right: 16px;" type="reset" value="重置">
+								<input class="style3 col-md-3 col-md-offset-1" id="return" style="margin-left: 0;"  type="button" value="返回">
+              </div>
+						</form>
+					</div>
+				</div>
+			
+				<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+				<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+				<script>
+					document.getElementById("loginBtn").addEventListener("click", function() {
+						document.getElementById("loginModal").style.display = "block";
+					});
+			
+					document.getElementById("registerBtn").addEventListener("click", function() {
+						document.getElementById("registerModal").style.display = "block";
+					});
+			
+					document.getElementById("login").addEventListener("click", function() {
+						document.getElementById("loginModal").style.display = "block";
+						document.getElementById("registerModal").style.display = "none";
+					});
+			
+					document.getElementById("register").addEventListener("click", function() {
+						document.getElementById("loginModal").style.display = "none";
+						document.getElementById("registerModal").style.display = "block";
+					});
+					
+					document.getElementById("register1").addEventListener("click", function() {
+						document.getElementById("loginModal").style.display = "none";
+						document.getElementById("registerModal").style.display = "block";
+					});
+			
+					document.getElementsByClassName("close")[0].onclick = function () {
+						document.getElementById("loginModal").style.display = "none";
+					};
+			
+					document.getElementsByClassName("close")[1].onclick = function () {
+						document.getElementById("registerModal").style.display = "none";
+					};
+			
+					document.getElementById("return").addEventListener("click", function() {
+						document.getElementById("registerModal").style.display = "none";
+						document.getElementById("loginModal").style.display = "block";
+					});
+
+	  var loginModal =new Vue({
+			el:'loginModal',
+			data() {
+			return {
+			username: "",
+			password: "",
+			};
+		},
+			methods: {
+				login() {
+				// var username = document.getElementById("username").value;
+				// var password = document.getElementById("password").value;
+
+				if (username === "") {
+					alert("用户名或密码不能为空");
+				} else if (password === "") {
+					alert("密码不能为空");
+				} else {
+					// 在这里添加登录验证逻辑，例如发送请求到服务器验证用户名和密码是否正确
+					axios({
+						method: "post",
+						url: 'https://localhost:3000/login/',
+						data: {
+							username:this.username,
+							password:this.password
+						},
+						headers: {
+							"Content-Type": "application/json"
+						}
+					}).then(function (res) {
+						console.log(res.data);//请求完成后执行的回调函数
+					}).catch(function (error) {
+						console.log(error);//请求异常捕获
+					})
+				}
+				},
+			},
+	  })
+	  var registerModal =new Vue({
+			el:'registerModal',
+			data() {
+			return {
+				regUsername: "",
+				regPassword: "",
+				lastRegPassword:""
+			};
+		},
+			methods: {
+				register() {
+				// var username = document.getElementById("regUsername").value;
+				// var password = document.getElementById("regPassword").value;
+				// var repassword = document.getElementById("lastRegPassword").value;
+				if (regUsername == "") {
+					alert("用户名或密码不能为空");
+				} else if (regPassword == "") {
+					alert("请输入密码");
+				}else if (lastRegPassword == "") {
+					alert("请再次输入密码");
+				}  else {
+					// 在这里添加登录验证逻辑，例如发送请求到服务器验证用户名和密码是否正确
+					axios({
+						method: "post",
+						url: 'https://localhost:3000/register/',
+						data: {
+							username:this.username,
+							password:this.password
+						},
+						headers: {
+							"Content-Type": "application/json"
+						}
+					}).then(function (res) {
+						console.log(res.data);//请求完成后执行的回调函数
+					}).catch(function (error) {
+						console.log(error);//请求异常捕获
+					})
+				}
+				},
+			},
+	  })
+    </script>
+  </body>
+</html>

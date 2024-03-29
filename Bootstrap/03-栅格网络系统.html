@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>01-Bootstrap的页面模板</title>
+		<link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+	</head>
+	<body>
+		<!-- 栅格网格系统
+			1.列组合
+				列数之和不能超过平分的总列数,比如12。如果大于12,则自动换到下一行。
+			2.列偏移
+				只需要在列元素上添加类名"col-md- offset-*"(其中星号代表要偏移的列组合数),那么具有这个类名的列就会向右偏移。例如,你在列元素上添加"col-md-offset-8",表示该列向右移动8个列的宽度(要保证列与偏移列的总数不超过12,不然会 致列断行|换行显示)。
+			3.列排序
+				列排序其实就是改变列的方向,就是改变左右浮动,并且设置浮动的距离。在Bootstrap框架的网格系统中是通过添加类名col-md-push*和col-md-pu||* (其中星号代表移动的列组合数)。往前pull,往后push。
+			4.列嵌套
+				Bootstrap框架的网格系统还支持列的嵌套。你可以在一个列中添加一个或者多个行(row)容器,然后在这个行容器中插入列。
+		 -->
+		
+		<!-- 布局容器 -->
+				<div class="container">
+					<!-- 行元素 -->
+					<div class="row">
+						<!-- 列元素  col-xs-数值  col-sm-数值  col-md-数值  col-lg-数值-->
+						<div class="col-md-4 col-lg-4" style="background-color: aquamarine;">4</div>
+						<div class="col-md-8 col-lg-8" style="background-color: cornflowerblue;">8</div>
+					</div>
+				
+				<hr />
+					<!-- 列组合 -->
+					<div class="row">
+						<div class="col-md-1" style="background-color: cadetblue;">1</div>
+						<div class="col-md-1" style="background-color:red;">1</div>
+						<div class="col-md-1" style="background-color: green;">1</div>
+						<div class="col-md-1" style="background-color: orange;">1</div>
+					</div>
+					
+					<div class="row">
+					<!-- column md-6 -->
+						<div class="col-md-6" style="background-color:yellow;">6</div>
+						<div class="col-md-6" style="background-color: lightblue;">6</div>
+					</div>
+					
+					<div class="row">
+					<!-- column md-4 -->
+						<div class="col-md-4" style="background-color: orange;">4</div>
+						<div class="col-md-4" style="background-color: green;">4</div>
+						<div class="col-md-4" style="background-color: red;">4</div>
+					</div>
+					
+				<hr />
+					<!-- 列的总数不超过12 -->
+					<div class="row">
+						<div class="col-md-4" style="background-color: orange;">4</div>
+						<div class="col-md-4" style="background-color: green;">4</div>
+						<div class="col-md-5" style="background-color: red;">5</div>
+					</div>
+					
+				<hr />
+					<!-- 列偏移 -->
+					<div class="row">
+						<div class="col-md-1" style="background-color: cadetblue;">1</div>
+						<div class="col-md-1 col-md-offset-1" style="background-color:red;">1</div>
+						<div class="col-md-1" style="background-color: green;">1</div>
+						<div class="col-md-1 col-md-offset-2" style="background-color: orange;">1</div>
+					</div>
+					
+				<hr />
+					<!-- 列排序 -->
+					<!-- 后面覆盖前面 -->
+					<div class="row">
+						<div class="col-md-1 col-md-push-4" style="background-color: black;">1</div>
+						<div class="col-md-1 " style="background-color:red;">1</div>
+						<div class="col-md-1 col-md-pull-1" style="background-color: green;">1</div>
+						<div class="col-md-1 " style="background-color: orange;">1</div>
+					</div>
+					
+				<hr />
+					<!-- 列嵌套 -->
+					<div class="row">
+						<div class="col-md-6" style="background-color: cadetblue;">
+							<div class="row">
+								<div class="col-md-1" style="background-color: aqua;">1</div>
+								<div class="col-md-9" style="background-color: greenyellow;">9</div>
+								<div class="col-md-1" style="background-color: orange;">1</div>
+								<div class="col-md-1" style="background-color: yellow;">1</div>
+							</div>
+						</div>
+						<div class="col-md-6 " style="background-color:red;">6</div>
+					</div>
+				
+				<hr />
+					<div class="row">
+						<div class="col-md-3 col-sm-6" style="background-color: skyblue;">3</div>
+						<div class="col-md-3 col-sm-6" style="background-color: seagreen;">3</div>
+						<div class="col-md-3 col-sm-6" style="background-color: orange;">3</div>
+						<div class="col-md-3 col-sm-6" style="background-color: pink;">3</div>
+					</div>
+				</div>	
+	</body>
+	<script src="js/jQuery.js"></script>
+	<script src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+</html>

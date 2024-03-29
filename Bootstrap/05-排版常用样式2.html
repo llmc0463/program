@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>05-排版常用样式2</title>
+		<link rel="stylesheet" href="./bootstrap-3.4.1-dist/css/bootstrap.min.css" />
+	</head>
+	<body>
+		<!-- 1.列表
+				无序列表(<ul><li>...</li></ul>)
+				有序列表(<ol><li>...</li></ol>)
+				定义列表(<dl><dt>...</dt><dd>...</dd></dl>)
+			2.代码
+				(1)使用<code></code>来显示单行内联代码
+				(2)使用<pre></pre>来显示多行块代码
+				样式:pre-scrollable(height,max-height高度固定,为340px,超过存在滚动条)
+				(3)使用<kbd></kbd>来显示用户输入代码,如快捷键
+			3.表格
+				基础样式
+				1).table:基础表格
+				附加样式
+				1).table-striped:斑马线表格 
+				2).table-bordered:带边框的表格 
+				3).table-hover:鼠标悬停高亮的表格
+				4).table-condensed:紧凑型表格,单元格没内距或者内距较其他表格的内距小
+				tr、th、td样式
+				提供了五种不同的类名,每种类名控制了行的不同背景颜色
+				active	将悬停的颜色应用在行或者单元格上
+				success	表示成功的操作
+				info	表示信息变化的操作
+				warning	表示一个警告的操作
+				danger	表示一个危险的操作
+		 -->
+		 
+		<!-- 无序列表 -->
+		<ul >
+			<li>无序项目列表一</li>
+			<li>无序项目列表二</li>
+		</ul>
+		<!-- 有序列表 -->
+		<ol >
+			<li>有序项目列表一</li>
+			<li>有序项目列表二</li>
+		</ol>
+		<!-- 定义列表 -->
+		<dl>
+		<dt>HTML</dt>
+		<dd>超文本标记语言</dd>
+		<dt>CSS</dt>
+		<dd>层叠样式表是一种样式表语言</dd>
+		</dl>
+		
+		<hr />
+		<!-- 去点列表 -->
+		<ul class="list-unstyled">
+			<li>无序项目列表一</li>
+			<li>无序项目列表二</li>
+		</ul>
+		
+		<hr />
+		<!-- 内联（水平）列表 -->
+		<ul class="list-inline">
+		<li>首页</li>
+		<li>java学院</li>
+		<li>在线课堂</li>
+		</ul>
+		<!-- 自定义列表 内联（水平）列表 -->
+		<dl  class="dl-horizontal">
+		<dt>HTML 超文本标记语言</dt>
+		<dd>HTML称为超文本标记语言,是一种标识性的语言。</dd>
+		<dt>测试标题不能超过160px的宽度,否则2个点</dt>
+		<dd>我在写一个水平定义列表的效果,我在写一个水平定义列表的效果。</dd>
+		</dl>
+		
+		<hr /><br>
+		<!-- 使用<code></code>来显示单行内联代码 -->
+		this is a simple code <br />
+		<code>this is a simple code </code><br />
+		<code>
+		this is a simple code <br />
+		this is a simple code
+		</code>
+		
+		<!-- 使用<kbd></kbd>来显示用户输入代码,如快捷键 -->
+		<p>使用<kbd>CTRL</kbd>+<kbd>S</kbd>保存内容</p>
+		
+		<!-- 使用<pre></pre>来显示多行块代码 -->
+		<!-- 代码会保留原有格式包括空格和回车 -->
+		<pre>
+public class HelloWorld	{
+public static void main(String[〕  args){
+System.out.println("helloworld.…");
+	}
+}						
+		</pre>
+		<!-- 显示HTML代码需要使用字符实体 -->
+		<pre>
+			&lt;h1&gt;&lt;/h1&gt;
+		</pre>
+		<!-- 当长度超过指定值，可以添加滚动条 -->
+		<pre class="pre-scrollable">
+		<ol>
+			<li>。。。。</li>
+			<li>。。。。</li>
+			<li>。。。。</li>
+			<li>。。。。</li>
+			<li>。。。。</li>
+			<li>。。。。</li>
+			<li>。。。。</li>
+			<li>。。。。</li>
+			<li>。。。。</li>
+			<li>。。。。</li>
+		</ol>
+		</pre>
+		
+		<hr /><br />
+		<table  class="table table-bordered table-hover">
+		<tr class="active">
+		<th>JavaSE</th>
+		<th>数据库</th>
+		<th>JavaScript</th>
+		</tr>
+		<tr class="danger">
+		<td>面向对象</td>
+		<td>oracle</td>
+		<td>json</td>
+		</tr>
+		<tr class="success">
+		<td>数组</td>
+		<td>mysql</td>
+		<td>ajax</td>
+		</tr>
+		</table>
+	</body>
+	<script src="js/jQuery.js"></script>
+	<script src="bootstrap-3.4.1-dist/js/bootstrap.min.js"></script>
+</html>
+		
+	
+		

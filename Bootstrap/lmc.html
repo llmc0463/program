@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+		<style>
+			.flex-container {
+			  display: flex; /* 启用Flex布局 */
+			  flex-direction: row; /* 默认水平排列 */
+			}
+			
+			.item {
+			  flex: 1; /* 分配剩余空间 */
+			  /* 其他样式... */
+			}
+			
+			/* 媒体查询 */
+			@media (max-width: 768px) {
+			  .flex-container {
+			    flex-direction: column; /* 在小于或等于768px的屏幕上垂直排列 */
+			  }
+			}
+		</style>
+	</head>
+	<body>
+		<div class="flex-container">
+		  <div class="item">Item 1</div>
+		  <div class="item">Item 2</div>
+		  <div class="item">Item 3</div>
+		  <!-- 更多项目... -->
+		</div>
+
+	</body>
+</html>

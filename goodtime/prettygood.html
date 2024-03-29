@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>lmc时钟案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+		body {
+		    text-align: center;
+		        }
+        .box {
+            margin: 100px auto;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;/* 设置元素的外边框圆角 */
+            border: 10px solid #cccccc;
+            position: relative;
+			top: -900px;
+        }
+        .box>.line {
+            height: 300px;
+            width: 10px;
+            position: absolute;
+            background-color: #cccccc;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }/* 将所有line类的div构造例如中心对称线 */
+        .box>.line2 {
+            width: 7px;
+            transform: translate(-50%, 0) rotateZ(30deg);
+        }
+        .box>.line3 {
+            width: 7px;
+            transform: translate(-50%, 0) rotateZ(60deg);
+        }
+        .box>.line4 {
+            transform: translate(-50%, 0) rotateZ(90deg);
+        }
+        .box>.line5 {
+            width: 7px;
+            transform: translate(-50%, 0) rotateZ(120deg);
+        }
+        .box>.line6 {
+            width: 7px;
+            transform: translate(-50%, 0) rotateZ(150deg);
+        }
+        .roundness {
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }/* 将所有roundness类的div构造成 */
+        .circle {
+            width: 270px;
+            height: 270px;
+            background-color: #fff;/* 小圆背景色白色 */
+        }
+        .needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -100%);
+        }/* 将所有needle类的div构造成 */
+        .hour {
+            width: 10px;
+            height: 70px;
+            background-color: limegreen;/* 时针颜色 */
+            border-radius: 5px 5px;
+            /*设置旋转轴心*/
+            transform-origin: center bottom;
+			transform: translate(-50%, -100%) rotate(240deg);
+        }/* 时针样式 */
+        .minute {
+            width: 7px;
+            height: 90px;
+            background-color: yellow;
+			/* 分针颜色 */
+            border-radius: 3.5px 3.5px;
+            /*设置旋转轴心*/
+            transform-origin: center bottom;
+        }/* 分针样式 */
+        .second {
+            width: 4px;
+            height: 110px;
+            background-color: red;
+			/* 秒针颜色 */
+            border-radius: 2px 2px;
+            /*设置旋转轴心*/
+            transform-origin: center bottom;
+        }/* 秒针样式 */
+        .cir {
+            width: 20px;
+            height: 20px;
+            background-color: skyblue;
+        }
+		/* 时钟中心点样式 */
+    </style>
+</head>
+<body>
+	<img width="1000px" height="1000px"  src="./img/下载.jpg" alt="hnust" />
+    <div class="box"><!-- 时钟表盘 -->
+        <div class="line line1"></div><!-- 垂直中心对称线 -->
+        <div class="line line2"></div><!--1,7刻度线 -->
+        <div class="line line3"></div><!-- 2，8刻度线 -->
+        <div class="line line4"></div><!-- 3，9刻度线 -->
+        <div class="line line5"></div><!-- 4，10刻度线 -->
+        <div class="line line6"></div><!-- 5，11刻度线 -->
+        <div class="roundness circle"></div><!-- 圆的圆度角-->
+        <div class="needle hour"></div><!-- 小时指针 -->
+        <div class="needle minute"></div><!-- 分钟指针 -->
+        <div class="needle second"></div><!-- 秒钟指针 -->
+        <div class="roundness cir"></div><!-- 时钟中心点 -->
+    </div>
+</body>
+</html>
