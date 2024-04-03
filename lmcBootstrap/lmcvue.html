@@ -99,7 +99,7 @@
             font-size: 24px;
             font-weight: bold;
             position: absolute;
-            top: 30px;
+            top: 25px;
             justify-content: center; /* 水平居中 */
       }
       .style2{
@@ -125,7 +125,7 @@
             padding-top: 5px;
       }
       .style5{
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             border-color: #DDDFE6;
             border-radius: 5px;
         }
@@ -472,15 +472,15 @@
 					<div class="modal-content">
 						<div class="style1 ">登录</div>
 						<span class="close">&times;</span>
-						<form class="form" style="padding-top: 20px;">
+						<form class="form" style="padding-top: 20px;" @submit.prevent="submitForm">
 							<label for="username"><span style="color:red;">*</span><span class="style2" >用户名</span></label>
-							<input class="style5" type="text" id="username" name="username" autocomplete="off" v-model="username" />
+							<input class="style5" type="text" id="username" name="username" autocomplete="off" v-model="username"  />
 							<br />
 							<label for="password" style="padding-right: 18px;padding-bottom: 16px;"><span style="color:red;">*</span><span class="style2" >密码</span></label>
-							<input class="style5" type="password" id="password" name="password" v-model="password" />
+							<input class="style5" type="password" id="password" name="password" v-model="password"  />
 							<br />
 							<div class="row" style="padding-left: 18px;margin: 0;">
-								<input class="style4 col-md-3 " id="login" type="button" value="登录" @click="login" />
+								<input class="style4 col-md-3 " id="login" type="submit" value="登录" @click="login" />
 								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 16px;margin-right: 16px;" type="reset" value="重置">
 								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 0;" id="register" type="button" value="注册">
               </div>
@@ -492,7 +492,7 @@
 					<div class="modal-content">
 						<div class="style1 ">注册</div>
 						<span class="close">&times;</span>
-						<form class="form" style="padding-top: 40px;">
+						<form class="form" style="padding-top: 40px;" @submit.prevent="regsubmitForm">
 							<label for="regUsername" style="padding-right: 18px;"><span style="color:red;">*</span><span class="style2" >用户名</span></label>
 							<input class="style5" type="text" id="regUsername" name="regUsername" v-model="regUsername" />
 							<br />
@@ -500,10 +500,10 @@
 							<input class="style5" type="password" id="regPassword" name="regPassword" v-model="regPassword" />
 							<br />
 							<label for="lastRegPassword" style="padding-bottom: 10px;" ><span style="color:red;">*</span><span class="style2" >确认密码</span></label>
-							<input class="style5" type="password" name="lastRegPassword" id="lastRegPassword" v-model="lastRegPassword">
+							<input class="style5" type="password" name="lastRegPassword" id="lastRegPassword" v-model="lastRegPassword" />
 							<br/>
 							<div class="row" style="padding-left: 18px;margin: 0;">
-                <input class="style4 col-md-3 " id="register1" type="button" value="提交" @click="register" />
+                <input class="style4 col-md-3 " id="register1" type="submit" value="提交" @click="register" />
 								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 16px;margin-right: 16px;" type="reset" value="重置">
 								<input class="style3 col-md-3 col-md-offset-1" id="return" style="margin-left: 0;"  type="button" value="返回">
               </div>
@@ -514,121 +514,118 @@
 				<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 				<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 				<script>
-					document.getElementById("loginBtn").addEventListener("click", function() {
-						document.getElementById("loginModal").style.display = "block";
-					});
-			
-					document.getElementById("registerBtn").addEventListener("click", function() {
-						document.getElementById("registerModal").style.display = "block";
-					});
-			
-					document.getElementById("login").addEventListener("click", function() {
-						document.getElementById("loginModal").style.display = "block";
-						document.getElementById("registerModal").style.display = "none";
-					});
-			
-					document.getElementById("register").addEventListener("click", function() {
-						document.getElementById("loginModal").style.display = "none";
-						document.getElementById("registerModal").style.display = "block";
-					});
-					
-					document.getElementById("register1").addEventListener("click", function() {
-						document.getElementById("loginModal").style.display = "none";
-						document.getElementById("registerModal").style.display = "block";
-					});
-			
-					document.getElementsByClassName("close")[0].onclick = function () {
-						document.getElementById("loginModal").style.display = "none";
-					};
-			
-					document.getElementsByClassName("close")[1].onclick = function () {
-						document.getElementById("registerModal").style.display = "none";
-					};
-			
-					document.getElementById("return").addEventListener("click", function() {
-						document.getElementById("registerModal").style.display = "none";
-						document.getElementById("loginModal").style.display = "block";
-					});
-
-	  var loginModal =new Vue({
-			el:'loginModal',
-			data() {
-			return {
-			username: "",
-			password: "",
-			};
-		},
-			methods: {
-				login() {
-				// var username = document.getElementById("username").value;
-				// var password = document.getElementById("password").value;
-
-				if (username === "") {
-					alert("用户名或密码不能为空");
-				} else if (password === "") {
-					alert("密码不能为空");
-				} else {
-					// 在这里添加登录验证逻辑，例如发送请求到服务器验证用户名和密码是否正确
-					axios({
-						method: "post",
-						url: 'https://localhost:3000/login/',
-						data: {
-							username:this.username,
-							password:this.password
-						},
-						headers: {
-							"Content-Type": "application/json"
-						}
-					}).then(function (res) {
-						console.log(res.data);//请求完成后执行的回调函数
-					}).catch(function (error) {
-						console.log(error);//请求异常捕获
-					})
-				}
-				},
-			},
-	  })
-	  var registerModal =new Vue({
-			el:'registerModal',
-			data() {
-			return {
-				regUsername: "",
-				regPassword: "",
-				lastRegPassword:""
-			};
-		},
-			methods: {
-				register() {
-				// var username = document.getElementById("regUsername").value;
-				// var password = document.getElementById("regPassword").value;
-				// var repassword = document.getElementById("lastRegPassword").value;
-				if (regUsername == "") {
-					alert("用户名或密码不能为空");
-				} else if (regPassword == "") {
-					alert("请输入密码");
-				}else if (lastRegPassword == "") {
-					alert("请再次输入密码");
-				}  else {
-					// 在这里添加登录验证逻辑，例如发送请求到服务器验证用户名和密码是否正确
-					axios({
-						method: "post",
-						url: 'https://localhost:3000/register/',
-						data: {
-							username:this.username,
-							password:this.password
-						},
-						headers: {
-							"Content-Type": "application/json"
-						}
-					}).then(function (res) {
-						console.log(res.data);//请求完成后执行的回调函数
-					}).catch(function (error) {
-						console.log(error);//请求异常捕获
-					})
-				}
-				},
-			},
-	  })
-    </script>
+        var loginModal = new Vue({
+          el: '#loginModal',
+          data() {
+            return {
+              username: "",
+              password: "",
+            };
+          },
+          methods: {
+            showLoginModal() {
+              this.$el.style.display = "block";
+            },
+            hideLoginModal() {
+              this.$el.style.display = "none";
+            },
+            showRegisterModalAfterHidingLogin() {
+              this.hideLoginModal();
+              registerModal.showRegisterModal();
+            },
+            login() {
+              if (!this.username ) {
+                alert("用户名不能为空");
+              } else if(!this.password){
+                alert("密码不能为空");
+              }else {
+                axios({
+                  method: "post",
+                  url: 'https://localhost:3000/login/',
+                  data: {
+                    username: this.username,
+                    password: this.password
+                  },
+                  headers: {
+                    "Content-Type": "application/json"
+                  }
+                }).then(function (res) {
+                  console.log(res.data);
+                  // 处理登录成功的逻辑，例如隐藏登录模态框
+                  this.hideLoginModal();
+                }.bind(this)).catch(function (error) {
+                  console.log(error);
+                  // 可以在此处显示错误信息
+                });
+              }
+            },
+          },
+          mounted() {
+            document.getElementById("loginBtn").addEventListener("click", this.showLoginModal);
+            document.getElementById("login").addEventListener("click", this.login);
+            document.getElementsByClassName("close")[0].addEventListener("click", this.hideLoginModal);
+            document.getElementById("register").addEventListener("click", this.showRegisterModalAfterHidingLogin)
+          },
+        });
+      
+        var registerModal = new Vue({
+          el: '#registerModal',
+          data() {
+            return {
+              regUsername: "",
+              regPassword: "",
+              lastRegPassword: "",
+            };
+          },
+          methods: {
+            showRegisterModal() {
+              this.$el.style.display = "block";
+            },
+            hideRegisterModal() {
+              this.$el.style.display = "none";
+            },
+            showLoginAndHideRegister() {
+              this.hideRegisterModal();
+              loginModal.showLoginModal();
+            },
+            register() {
+              if (!this.regUsername) {
+                alert("用户名不能为空");
+              } else if(!this.regPassword){
+                alert("密码不能为空");
+              } else if(!this.lastRegPassword){
+                alert("请再次输入密码");
+              } else if (this.regPassword !== this.lastRegPassword) {
+                alert("两次输入的密码不一致");
+              } else {
+                axios({
+                  method: "post",
+                  url: 'https://localhost:3000/register/',
+                  data: {
+                    username: this.regUsername,
+                    password: this.regPassword,
+                  },
+                  headers: {
+                    "Content-Type": "application/json"
+                  }
+                }).then(function (res) {
+                  console.log(res.data);
+                  // 处理注册成功的逻辑，例如隐藏注册模态框
+                  this.hideRegisterModal();
+                }.bind(this)).catch(function (error) {
+                  console.log(error);
+                  // 可以在此处显示错误信息
+                });
+              }
+            },
+          },
+          mounted() {
+            document.getElementById("registerBtn").addEventListener("click", this.showRegisterModal);
+            document.getElementById("register1").addEventListener("click", this.register);
+            document.getElementById("return").addEventListener("click",  this.showLoginAndHideRegister);
+            document.getElementsByClassName("close")[1].addEventListener("click", this.hideRegisterModal);
+          },
+        });
+      </script>
   </body>
 </html>
