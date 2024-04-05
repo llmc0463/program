@@ -491,7 +491,7 @@
 							<input class="style5" type="password" id="password" name="password" v-model="password"  />
 							<br />
 							<div class="row" style="padding-left: 18px;margin: 0;">
-								<input class="style4 col-md-3 " id="login" type="submit" value="登录" @click="login" />
+								<input class="style4 col-md-3 " id="login" type="button" value="登录" @click="login" />
 								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 16px;margin-right: 16px;" type="reset" value="重置">
 								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 0;" id="register" type="button" value="注册">
               </div>
@@ -514,7 +514,7 @@
 							<input class="style5" type="password" name="lastRegPassword" id="lastRegPassword" v-model="lastRegPassword" />
 							<br/>
 							<div class="row" style="padding-left: 18px;margin: 0;">
-                <input class="style4 col-md-3 " id="register1" type="submit" value="提交" @click="register" />
+                <input class="style4 col-md-3 " id="register1" type="button" value="提交" @click="register" />
 								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 16px;margin-right: 16px;" type="reset" value="重置">
 								<input class="style3 col-md-3 col-md-offset-1" id="return" style="margin-left: 0;"  type="button" value="返回">
               </div>
@@ -600,7 +600,7 @@
               }else {
                 axios({
                   method: "post",
-                  url: 'https://localhost:3000/login/',
+                  url: 'http://localhost:3000/users',
                   data: {
                     username: this.username,
                     password: this.password
@@ -615,6 +615,7 @@
                 }.bind(this)).catch(function (error) {
                   console.log(error);
                   // 可以在此处显示错误信息
+				  alert('登录失败：' + error.message);
                 });
               }
             },
@@ -659,7 +660,7 @@
               } else {
                 axios({
                   method: "post",
-                  url: 'https://localhost:3000/register/',
+                  url: 'http://localhost:3000/users',
                   data: {
                     username: this.regUsername,
                     password: this.regPassword,
@@ -668,12 +669,14 @@
                     "Content-Type": "application/json"
                   }
                 }).then(function (res) {
-                  console.log(res.data);
+                  // console.log(res.data);
                   // 处理注册成功的逻辑，例如隐藏注册模态框
+				   alert('注册成功');
                   this.hideRegisterModal();
                 }.bind(this)).catch(function (error) {
                   console.log(error);
                   // 可以在此处显示错误信息
+				   alert('注册失败：' + error.message);
                 });
               }
             },
