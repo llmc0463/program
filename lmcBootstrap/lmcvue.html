@@ -483,7 +483,7 @@
 					<div class="modal-content">
 						<div class="style1 ">登录</div>
 						<span class="close">&times;</span>
-						<form class="form" style="padding-top: 20px;" @submit.prevent="submitForm">
+						<form class="form" style="padding-top: 20px;" >
 							<label for="username"><span style="color:red;">*</span><span class="style2" >用户名</span></label>
 							<input class="style5" type="text" id="username" name="username" autocomplete="off" v-model="username"  />
 							<br />
@@ -503,7 +503,7 @@
 					<div class="modal-content">
 						<div class="style1 ">注册</div>
 						<span class="close">&times;</span>
-						<form class="form" style="padding-top: 40px;" @submit.prevent="regsubmitForm">
+						<form class="form" style="padding-top: 40px;" >
 							<label for="regUsername" style="padding-right: 18px;"><span style="color:red;">*</span><span class="style2" >用户名</span></label>
 							<input class="style5" type="text" id="regUsername" name="regUsername" v-model="regUsername" />
 							<br />
@@ -573,6 +573,7 @@
 			    },
 			  }
 		});
+		
         var loginModal = new Vue({
           el: '#loginModal',
           data() {
@@ -622,7 +623,7 @@
           },
           mounted() {
             document.getElementById("loginBtn").addEventListener("click", this.showLoginModal);
-            document.getElementById("login").addEventListener("click", this.login);
+            // document.getElementById("login").addEventListener("click", this.login);
             document.getElementsByClassName("close")[0].addEventListener("click", this.hideLoginModal);
             document.getElementById("register").addEventListener("click", this.showRegisterModalAfterHidingLogin)
           },
@@ -683,7 +684,7 @@
           },
           mounted() {
             document.getElementById("registerBtn").addEventListener("click", this.showRegisterModal);
-            document.getElementById("register1").addEventListener("click", this.register);
+            // document.getElementById("register1").addEventListener("click", this.register);
             document.getElementById("return").addEventListener("click",  this.showLoginAndHideRegister);
             document.getElementsByClassName("close")[1].addEventListener("click", this.hideRegisterModal);
           },

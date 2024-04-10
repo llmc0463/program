@@ -47,12 +47,7 @@
         }
       }
       .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        /* left: 0;
-        top: 0; */
-        inset: 0; /* 在视口中居中，相当于 top, right, bottom, left 都为 0 */
+
         width: 100%;
         height: 100%;
         overflow: auto;
@@ -159,10 +154,12 @@
                       border: 1px solid white;
                       color: white;
                     "
+
+                    @click="showLoginModal"
                   >
                     登录
                   </button>
-                  <button
+                  <!-- <button
                     class="btn btn-default"
                     id="registerBtn"
                     style="
@@ -172,7 +169,7 @@
                     "
                   >
                     注册
-                  </button>
+                  </button> -->
                 </span>
               </div>
             </form>
@@ -475,12 +472,7 @@
       </div>
     </div>
 
-    
-				<!-- <button id="loginBtn">登录</button>
-				<button id="registerBtn">注册</button> -->
-
-				<div id="loginModal" class="modal">
-					<div class="modal-content">
+				<div id="loginModal" >
 						<div class="style1 ">登录</div>
 						<span class="close">&times;</span>
 						<form class="form" style="padding-top: 20px;" @submit.prevent="submitForm">
@@ -496,83 +488,13 @@
 								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 0;" id="register" type="button" value="注册">
               </div>
 						</form>
-					</div>
 				</div>
 			
-				<div id="registerModal" class="modal">
-					<div class="modal-content">
-						<div class="style1 ">注册</div>
-						<span class="close">&times;</span>
-						<form class="form" style="padding-top: 40px;" @submit.prevent="regsubmitForm">
-							<label for="regUsername" style="padding-right: 18px;"><span style="color:red;">*</span><span class="style2" >用户名</span></label>
-							<input class="style5" type="text" id="regUsername" name="regUsername" v-model="regUsername" />
-							<br />
-							<label for="regPassword" style="padding-right: 36px;"><span style="color:red;">*</span><span class="style2" >密码</span></label>
-							<input class="style5" type="password" id="regPassword" name="regPassword" v-model="regPassword" />
-							<br />
-							<label for="lastRegPassword" style="padding-bottom: 10px;" ><span style="color:red;">*</span><span class="style2" >确认密码</span></label>
-							<input class="style5" type="password" name="lastRegPassword" id="lastRegPassword" v-model="lastRegPassword" />
-							<br/>
-							<div class="row" style="padding-left: 18px;margin: 0;">
-                <input class="style4 col-md-3 " id="register1" type="button" value="提交" @click="register" />
-								<input class="style3 col-md-3 col-md-offset-1" style="margin-left: 16px;margin-right: 16px;" type="reset" value="重置">
-								<input class="style3 col-md-3 col-md-offset-1" id="return" style="margin-left: 0;"  type="button" value="返回">
-              </div>
-						</form>
-					</div>
-				</div>
 			
 				<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 				<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 				<script>
-		var show =new Vue({
-			el:'#show',
-			methods: {
-			    showAlert() {
-			      alert('你点击了按钮！');
-			    },
-			  }
-		});
-		var show1 =new Vue({
-			el:'#show1',
-			methods: {
-			    showAlert1() {
-			      alert('你点击了按钮！');
-			    },
-			  }
-		});
-		var show2 =new Vue({
-			el:'#show2',
-			methods: {
-			    showAlert2() {
-			      alert('你点击了按钮！');
-			    },
-			  }
-		});
-		var show3 =new Vue({
-			el:'#show3',
-			methods: {
-			    showAlert3() {
-			      alert('你点击了按钮！');
-			    },
-			  }
-		});
-		var learn =new Vue({
-			el:'#learn',
-			methods: {
-			    learnAlert1() {
-			      alert('开始了解详情！');
-			    },
-			  }
-		});
-		var learn2 =new Vue({
-			el:'#learn2',
-			methods: {
-			    learnAlert2() {
-			      alert('开始了解详情！');
-			    },
-			  }
-		});
+		
         var loginModal = new Vue({
           el: '#loginModal',
           data() {
@@ -598,9 +520,8 @@
               } else if(!this.password){
                 alert("密码不能为空");
               }else {
-                axios({
-                  method: "post",
-                  url: 'http://localhost:9999/ibs/user/login',
+                axios.post({
+                  url: 'http://localhost:3000/users',
                   data: {
                     username: this.username,
                     password: this.password
@@ -615,79 +536,13 @@
                 }.bind(this)).catch(function (error) {
                   console.log(error);
                   // 可以在此处显示错误信息
-				  alert('登录失败：' + error.message);
+				          alert('登录失败：' + error.message);
                 });
               }
             },
-          },
-          mounted() {
-            document.getElementById("loginBtn").addEventListener("click", this.showLoginModal);
-            // document.getElementById("login").addEventListener("click", this.login);
-            document.getElementsByClassName("close")[0].addEventListener("click", this.hideLoginModal);
-            document.getElementById("register").addEventListener("click", this.showRegisterModalAfterHidingLogin)
-          },
+          }
         });
       
-        var registerModal = new Vue({
-          el: '#registerModal',
-          data() {
-            return {
-              regUsername: "",
-              regPassword: "",
-              lastRegPassword: "",
-            };
-          },
-          methods: {
-            showRegisterModal() {
-              this.$el.style.display = "block";
-            },
-            hideRegisterModal() {
-              this.$el.style.display = "none";
-            },
-            showLoginAndHideRegister() {
-              this.hideRegisterModal();
-              loginModal.showLoginModal();
-            },
-            register() {
-              if (!this.regUsername) {
-                alert("用户名不能为空");
-              } else if(!this.regPassword){
-                alert("密码不能为空");
-              } else if(!this.lastRegPassword){
-                alert("请再次输入密码");
-              } else if (this.regPassword !== this.lastRegPassword) {
-                alert("两次输入的密码不一致");
-              } else {
-                axios({
-                  method: "post",
-                  url: 'http://localhost:9999/ibs/user/register',
-                  data: {
-                    username: this.regUsername,
-                    password: this.regPassword,
-                  },
-                  headers: {
-                    "Content-Type": "application/json"
-                  }
-                }).then(function (res) {
-                  // console.log(res.data);
-                  // 处理注册成功的逻辑，例如隐藏注册模态框
-				   alert('注册成功');
-                  this.hideRegisterModal();
-                }.bind(this)).catch(function (error) {
-                  console.log(error);
-                  // 可以在此处显示错误信息
-				   alert('注册失败：' + error.message);
-                });
-              }
-            },
-          },
-          mounted() {
-            document.getElementById("registerBtn").addEventListener("click", this.showRegisterModal);
-            // document.getElementById("register1").addEventListener("click", this.register);
-            document.getElementById("return").addEventListener("click",  this.showLoginAndHideRegister);
-            document.getElementsByClassName("close")[1].addEventListener("click", this.hideRegisterModal);
-          },
-        });
       </script>
   </body>
 </html>
